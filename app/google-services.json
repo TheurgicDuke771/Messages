@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "966277310762",
+    "firebase_url": "https://messages-360d9.firebaseio.com",
+    "project_id": "messages-360d9",
+    "storage_bucket": "messages-360d9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:966277310762:android:79a8a73c7e7c4319",
+        "android_client_info": {
+          "package_name": "com.example.messages"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "966277310762-e2cmhm7mh420brlr0n7o88d6q7u0kg6t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDc4E3euhuOrzD5MkXpcZJqF3cz1DtmOgY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "966277310762-e2cmhm7mh420brlr0n7o88d6q7u0kg6t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
