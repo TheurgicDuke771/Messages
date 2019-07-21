@@ -25,6 +25,12 @@ class LoginActivity : AppCompatActivity() {
         val email = email_login.text.toString()
         val password = password_login.text.toString()
 
+        if(email.isEmpty() || password.isEmpty()){
+            Toast.makeText(baseContext, "Please enter Email/Password",
+                Toast.LENGTH_SHORT).show()
+            return
+        }
+
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
