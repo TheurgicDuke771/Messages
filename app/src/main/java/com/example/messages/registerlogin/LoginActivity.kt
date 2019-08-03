@@ -1,8 +1,12 @@
-package com.example.messages
+package com.example.messages.registerlogin
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
+import com.example.messages.R
+import com.example.messages.message.LatestMessagesActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -13,7 +17,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         btn_login.setOnClickListener {
-            performSignin()
+            performSignIn()
         }
 
         backToRegister.setOnClickListener{
@@ -21,7 +25,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun performSignin(){
+    private fun performSignIn(){
         val email = email_login.text.toString()
         val password = password_login.text.toString()
 
@@ -35,8 +39,10 @@ class LoginActivity : AppCompatActivity() {
             .addOnCompleteListener {
                 if (it.isSuccessful) {
                     // Sign in success, display a message to the user.
-                    Toast.makeText(baseContext, "Successfully created user with uid ${it.result?.user?.uid}",
-                        Toast.LENGTH_SHORT).show()
+                    Log.d("LoginActivity", "Successfully created user with uid ${it.result?.user?.uid}")
+                    val intent = Intent(this, LatestMessagesActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    startActivity(intent)
                 } else {
                     // If sign in fails, display a message to the user.
                     Toast.makeText(baseContext, "Authentication failed.",
