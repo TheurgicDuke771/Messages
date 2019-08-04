@@ -11,10 +11,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".message.NewMessageActivity">
+        <activity android:name=".message.ChatLogActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".message.LatestMessagesActivity"/>
+        </activity>
+        <activity android:name=".message.NewMessageActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".message.LatestMessagesActivity" />
         </activity>
         <activity android:name=".message.LatestMessagesActivity">
             <intent-filter>

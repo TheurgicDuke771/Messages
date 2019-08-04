@@ -1,5 +1,6 @@
 package com.example.messages.message
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -28,6 +29,10 @@ class NewMessageActivity : AppCompatActivity() {
         fetchUsers()
     }
 
+    companion object{
+        val USER_KEY = "USER_KEY"
+    }
+
     private fun fetchUsers() {
         val currentUser = FirebaseAuth.getInstance().uid
         val ref = FirebaseDatabase.getInstance().getReference("/users")
@@ -44,6 +49,15 @@ class NewMessageActivity : AppCompatActivity() {
                             adapter.add(UserItem(user))
                         }
                     }
+                }
+
+                adapter.setOnItemClickListener { item, view ->
+                    val userItem = item as UserItem
+                    val intent = Intent(view.context, ChatLogActivity::class.java)
+                    intent.putExtra(USER_KEY, userItem.user)
+                    startActivity(intent)
+
+                    finish()
                 }
                 recycleViewNewMessage.adapter = adapter
             }
