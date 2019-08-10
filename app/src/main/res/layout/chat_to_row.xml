@@ -11,7 +11,7 @@
         android:id="@+id/textViewChatTo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/rounded_edittext_register_login"
+        android:background="@drawable/rounded_edit_text"
         android:maxWidth="240dp"
         android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"

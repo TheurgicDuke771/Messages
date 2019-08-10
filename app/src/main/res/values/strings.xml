@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Messages</string>
+    <string name="enter_message">Enter Message</string>
+    <string name="send">Send</string>
+    <string name="password">Password</string>
+    <string name="login">LOGIN</string>
+    <string name="go_back_to_registration_page">Go Back to Registration Page</string>
+    <string name="register">REGISTER</string>
+    <string name="already_have_an_account">Already Have an Account ?</string>
+    <string name="email">Email</string>
 </resources>

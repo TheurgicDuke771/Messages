@@ -1,23 +1,22 @@
 package com.example.messages.message
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.messages.R
 import com.example.messages.model.ChatMessage
 import com.example.messages.model.User
+import com.example.messages.views.ChatFromItem
+import com.example.messages.views.ChatToItem
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_chat_log.*
-import kotlinx.android.synthetic.main.chat_from_row.view.*
-import kotlinx.android.synthetic.main.chat_to_row.view.*
 
 class ChatLogActivity : AppCompatActivity() {
 
@@ -61,6 +60,12 @@ class ChatLogActivity : AppCompatActivity() {
 
         toReference.setValue(chatMessage)
 
+        val latestMessageRef = FirebaseDatabase.getInstance().getReference("/latest-messages/$fromId/$toId")
+        latestMessageRef.setValue(chatMessage)
+
+        val latestMessageToRef = FirebaseDatabase.getInstance().getReference("/latest-messages/$toId/$fromId")
+        latestMessageToRef.setValue(chatMessage)
+
     }
 
     private fun listenForMessages() {
@@ -83,6 +88,7 @@ class ChatLogActivity : AppCompatActivity() {
                         adapter.add(ChatFromItem(chatMessage.text))
                     }
                 }
+                recycleViewChatLog.scrollToPosition(adapter.itemCount-1)
             }
 
             override fun onCancelled(p0: DatabaseError) {
@@ -101,25 +107,5 @@ class ChatLogActivity : AppCompatActivity() {
 
             }
         })
-    }
-}
-
-class ChatFromItem(private val text: String): Item<ViewHolder> () {
-    override fun bind(viewHolder: ViewHolder, position: Int) {
-        viewHolder.itemView.textViewChatFrom.text = text
-    }
-
-    override fun getLayout(): Int {
-        return R.layout.chat_from_row
-    }
-}
-
-class ChatToItem(private val text: String): Item<ViewHolder> () {
-    override fun bind(viewHolder: ViewHolder, position: Int) {
-        viewHolder.itemView.textViewChatTo.text = text
-    }
-
-    override fun getLayout(): Int {
-        return R.layout.chat_to_row
     }
 }

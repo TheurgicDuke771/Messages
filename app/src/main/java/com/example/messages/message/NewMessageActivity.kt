@@ -70,7 +70,7 @@ class NewMessageActivity : AppCompatActivity() {
 
 class UserItem(val user: User): Item<ViewHolder>() {
     override fun bind(viewHolder: ViewHolder, position: Int) {
-        viewHolder.itemView.usernameTextViewNewMessage.text = user.username
+        viewHolder.itemView.textViewUserNameNewMessage.text = user.username
     }
 
     override fun getLayout(): Int {

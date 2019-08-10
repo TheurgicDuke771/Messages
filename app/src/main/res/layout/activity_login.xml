@@ -14,35 +14,37 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
-        android:background="@drawable/rounded_edittext_register_login"
+        android:background="@drawable/rounded_edit_text"
         android:ems="10"
         android:inputType="textEmailAddress"
-        android:hint="Email"
+        android:hint="@string/email"
         android:paddingStart="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="RtlSymmetry" />
 
     <EditText
         android:id="@+id/password_login"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/rounded_edittext_register_login"
+        android:background="@drawable/rounded_edit_text"
         android:ems="10"
         android:inputType="textPassword"
-        android:hint="Password"
+        android:hint="@string/password"
         android:paddingStart="16dp"
         app:layout_constraintEnd_toEndOf="@+id/email_login"
         app:layout_constraintStart_toStartOf="@+id/email_login"
-        app:layout_constraintTop_toBottomOf="@+id/email_login" />
+        app:layout_constraintTop_toBottomOf="@+id/email_login"
+        tools:ignore="RtlSymmetry" />
 
     <Button
         android:id="@+id/btn_login"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
-        android:text="LOGIN"
+        android:text="@string/login"
         android:background="@drawable/rounded_button"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="@+id/password_login"
@@ -54,7 +56,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Go Back to Registration Page"
+        android:text="@string/go_back_to_registration_page"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/btn_login"
