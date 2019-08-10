@@ -41,12 +41,13 @@ class ChatLogActivity : AppCompatActivity() {
     }
 
     private fun performSendMessage(){
-        val reference = FirebaseDatabase.getInstance().getReference("/messages").push()
-        val id = reference.key
         val text = editTextChatLog.text.toString()
         val fromId = FirebaseAuth.getInstance().uid
         val user = intent.getParcelableExtra<User>(NewMessageActivity.USER_KEY)
         val toId = user.uid
+        val reference = FirebaseDatabase.getInstance().getReference("/userMessages/$fromId/$toId").push()
+        val toReference = FirebaseDatabase.getInstance().getReference("/userMessages/$toId/$fromId").push()
+        val id = reference.key
 
         if(fromId == null || id== null) return
 
@@ -54,12 +55,19 @@ class ChatLogActivity : AppCompatActivity() {
 
         reference.setValue(chatMessage).addOnSuccessListener {
             Log.d("ChatLogActivity", "Message ${reference.key} Saved in DB")
+            editTextChatLog.text.clear()
+            recycleViewChatLog.scrollToPosition(adapter.itemCount-1)
         }
+
+        toReference.setValue(chatMessage)
 
     }
 
     private fun listenForMessages() {
-        val ref = FirebaseDatabase.getInstance().getReference("/messages")
+        val fromId = FirebaseAuth.getInstance().uid
+        val user = intent.getParcelableExtra<User>(NewMessageActivity.USER_KEY)
+        val toId = user.uid
+        val ref = FirebaseDatabase.getInstance().getReference("/userMessages/$fromId/$toId")
 
         ref.addChildEventListener(object: ChildEventListener {
 
