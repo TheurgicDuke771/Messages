@@ -83,9 +83,9 @@ class ChatLogActivity : AppCompatActivity() {
                     Log.d("ChatLogActivity", chatMessage.text)
 
                     if (chatMessage.fromId == FirebaseAuth.getInstance().uid) {
-                        adapter.add(ChatToItem(chatMessage.text))
+                        adapter.add(ChatToItem(chatMessage.text, chatMessage.timeStamp))
                     } else {
-                        adapter.add(ChatFromItem(chatMessage.text))
+                        adapter.add(ChatFromItem(chatMessage.text, chatMessage.timeStamp))
                     }
                 }
                 recycleViewChatLog.scrollToPosition(adapter.itemCount-1)
