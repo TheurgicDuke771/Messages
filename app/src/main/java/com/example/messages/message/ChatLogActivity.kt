@@ -28,7 +28,7 @@ class ChatLogActivity : AppCompatActivity() {
         recycleViewChatLog.layoutManager = LinearLayoutManager(this)
 
         val user = intent.getParcelableExtra<User>(NewMessageActivity.USER_KEY)
-        supportActionBar?.title = user.username
+        supportActionBar?.title = user?.username
 
         recycleViewChatLog.adapter = adapter
 
@@ -43,14 +43,14 @@ class ChatLogActivity : AppCompatActivity() {
         val text = editTextChatLog.text.toString()
         val fromId = FirebaseAuth.getInstance().uid
         val user = intent.getParcelableExtra<User>(NewMessageActivity.USER_KEY)
-        val toId = user.uid
+        val toId = user?.uid
         val reference = FirebaseDatabase.getInstance().getReference("/userMessages/$fromId/$toId").push()
         val toReference = FirebaseDatabase.getInstance().getReference("/userMessages/$toId/$fromId").push()
         val id = reference.key
 
         if(fromId == null || id== null) return
 
-        val chatMessage = ChatMessage(id, text,fromId, toId,System.currentTimeMillis())
+        val chatMessage = toId?.let { ChatMessage(id, text, fromId, it, System.currentTimeMillis()) }
 
         reference.setValue(chatMessage).addOnSuccessListener {
             Log.d("ChatLogActivity", "Message ${reference.key} Saved in DB")
@@ -71,7 +71,7 @@ class ChatLogActivity : AppCompatActivity() {
     private fun listenForMessages() {
         val fromId = FirebaseAuth.getInstance().uid
         val user = intent.getParcelableExtra<User>(NewMessageActivity.USER_KEY)
-        val toId = user.uid
+        val toId = user?.uid
         val ref = FirebaseDatabase.getInstance().getReference("/userMessages/$fromId/$toId")
 
         ref.addChildEventListener(object: ChildEventListener {
